@@ -7,11 +7,11 @@ public class AddressBookData {
     private String city;
     private String state;
     private String email;
-    private String zipCode;
-    private String phoneNumber;
+    private int zipCode;
+    private long phoneNumber;
 
-    public AddressBookData(String firstName, String lastName, String address, String city, String state, String email,
-                   String zipCode, String phoneNumber) {
+    public AddressBookData(String firstName, String lastName, String address, String city, String state,
+                   int zipCode, long phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -70,19 +70,19 @@ public class AddressBookData {
         this.email = email;
     }
 
-    public String getZipCode() {
+    public int getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
+    public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
-    public String getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
