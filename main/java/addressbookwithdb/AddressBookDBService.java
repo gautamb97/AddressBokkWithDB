@@ -1,6 +1,7 @@
 package addressbookwithdb;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,15 +30,7 @@ public class AddressBookDBService {
 
     public List<AddressBookData> readData(){
         String sql = "SELECT * FROM address_book; ";
-        List<AddressBookData> addressBookContactList = new ArrayList<>();
-        try (Connection connection = this.getConnection()){
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            addressBookContactList = this.getAddressBookData(resultSet);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return addressBookContactList;
+        return getContactDataUsingDB(sql);
     }
 
     public List<AddressBookData> getAddressBookData(String name){
@@ -97,5 +90,23 @@ public class AddressBookDBService {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public List<AddressBookData> getContactForDateRange(LocalDate addedDate, LocalDate endDate) {
+        String sql = String.format("SELECT * FROM address_book where date BETWEEN '%s' AND '%s';",
+                Date.valueOf(addedDate), Date.valueOf(endDate));
+        return getContactDataUsingDB(sql);
+    }
+
+    private List<AddressBookData> getContactDataUsingDB(String sql) {
+        List<AddressBookData> addressBookContactList = new ArrayList<>();
+        try (Connection connection = this.getConnection()){
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            addressBookContactList = this.getAddressBookData(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return addressBookContactList;
     }
 }

@@ -28,7 +28,7 @@ public class AddressBookData {
 
     @Override
     public String toString() {
-        return "[firstName =" + firstName + ", lastName =" + lastName + ", city =" + city + ", state =" + state
+        return "[firstName =" + firstName + ", lastName =" + lastName + ", Address =" + address + ", city =" + city + ", state =" + state
                 + ", zip =" + zipCode + ", phone =" + phoneNumber + ", email address =" + email + "]\n";
     }
 
