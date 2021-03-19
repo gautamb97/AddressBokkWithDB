@@ -37,6 +37,10 @@ public class AddressBookService {
         return null;
     }
 
+    public void addingNewContactToBook(String firstName, String lastName, String address, String city, String state, int zip, long phoneNumber, String email, LocalDate addedDate) {
+        addressBookContactList.add(addressBookDBService.addingNewContactToBook(firstName, lastName, address, city, state, zip, phoneNumber, email, addedDate));
+    }
+
     public boolean checkAddressBookDataIsSyncWithDB(String firstName){
         List<AddressBookData> addressBookDataList = addressBookDBService.getAddressBookData(firstName);
         return addressBookDataList.get(0).equals(getAddressBookData(firstName));

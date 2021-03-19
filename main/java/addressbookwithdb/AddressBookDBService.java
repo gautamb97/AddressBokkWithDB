@@ -119,4 +119,18 @@ public class AddressBookDBService {
         String sql = String.format("SELECT * FROM address_book where city = '%s';",city);
         return getContactDataUsingDB(sql);
     }
+
+    public AddressBookData addingNewContactToBook(String firstName, String lastName, String address, String city, String state, int zip, long phoneNumber, String email, LocalDate addedDate) {
+        AddressBookData addressBookData = null;
+        String sql = String.format("INSERT INTO address_book (firstName, lastName, Address, City, State, ZipCode, PhoneNumber, Email , Date)" +
+                "VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', %s, '%s', '%s' );", firstName, lastName, address, city, state, zip, phoneNumber, email, Date.valueOf(addedDate));
+        try(Connection connection = this.getConnection()){
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            addressBookData = new AddressBookData(firstName, lastName, address, city, state, zip, phoneNumber, email, addedDate);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return addressBookData;
+    }
 }

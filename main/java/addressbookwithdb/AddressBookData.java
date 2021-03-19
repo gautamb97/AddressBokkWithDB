@@ -1,5 +1,6 @@
 package addressbookwithdb;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class AddressBookData {
@@ -12,6 +13,7 @@ public class AddressBookData {
     public String email;
     public int zipCode;
     public long phoneNumber;
+    public LocalDate addedDate;
 
     public AddressBookData(String firstName, String lastName, String address, String city, String state,
                    int zipCode, long phoneNumber, String email) {
@@ -23,6 +25,11 @@ public class AddressBookData {
         this.email = email;
         this.zipCode = zipCode;
         this.phoneNumber = phoneNumber;
+    }
+
+    public AddressBookData(String firstName, String lastName, String address, String city, String state, int zipCode, long phoneNumber, String email, LocalDate addedDate){
+        this(firstName,lastName,address,city,state,zipCode,phoneNumber,email);
+        this.addedDate = addedDate;
     }
 
 

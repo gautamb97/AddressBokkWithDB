@@ -53,4 +53,13 @@ public class AddressBookServiceTest {
         List<AddressBookData> addressBookDataList = addressBookService.readAddressBookDataByCity(DB_IO, City);
         Assert.assertEquals(1, addressBookDataList.size());
     }
+
+    @Test
+    public void givenContact_WhenAdded_ShouldSyncWithDB(){
+        AddressBookService addressBookService = new AddressBookService();
+        addressBookService.readAddressBookData(DB_IO);
+        addressBookService.addingNewContactToBook("Vikrant","Goenka","Sector 12", "Bhuj", "Gujarat", 370001, 932493612,"vikrant@gmail.com",LocalDate.now());
+        boolean result = addressBookService.checkAddressBookDataIsSyncWithDB("Vikrant");
+        Assert.assertTrue(result);
+    }
 }
