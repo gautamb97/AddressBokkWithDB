@@ -109,4 +109,14 @@ public class AddressBookDBService {
         }
         return addressBookContactList;
     }
+
+    public List<AddressBookData> getContactByState(String state) {
+        String sql = String.format("SELECT * FROM address_book where state = '%s';", state);
+        return getContactDataUsingDB(sql);
+    }
+
+    public List<AddressBookData> getContactByCity(String city) {
+        String sql = String.format("SELECT * FROM address_book where city = '%s';",city);
+        return getContactDataUsingDB(sql);
+    }
 }

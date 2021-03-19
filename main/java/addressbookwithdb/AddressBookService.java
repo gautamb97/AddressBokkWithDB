@@ -25,6 +25,18 @@ public class AddressBookService {
         return this.addressBookContactList;
     }
 
+    public List<AddressBookData> readAddressBookDataByState(IOService ioService, String state) {
+        if(ioService.equals(IOService.DB_IO))
+            return addressBookDBService.getContactByState(state);
+        return null;
+    }
+
+    public List<AddressBookData> readAddressBookDataByCity(IOService ioService, String city) {
+        if(ioService.equals(IOService.DB_IO))
+            return addressBookDBService.getContactByCity(city);
+        return null;
+    }
+
     public boolean checkAddressBookDataIsSyncWithDB(String firstName){
         List<AddressBookData> addressBookDataList = addressBookDBService.getAddressBookData(firstName);
         return addressBookDataList.get(0).equals(getAddressBookData(firstName));

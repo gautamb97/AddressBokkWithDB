@@ -35,4 +35,22 @@ public class AddressBookServiceTest {
                 addressBookService.readContactDateRange(DB_IO, addedDate, endDate);
         Assert.assertEquals(2, addressBookData.size());
     }
+
+    @Test
+    public void givenContact_WhenRetrieved_ShouldMatchByState(){
+        AddressBookService addressBookService = new AddressBookService();
+        addressBookService.readAddressBookData(DB_IO);
+        String State = "DNH";
+        List<AddressBookData> addressBookDataList = addressBookService.readAddressBookDataByState(DB_IO, State);
+        Assert.assertEquals(1, addressBookDataList.size());
+    }
+
+    @Test
+    public void givenContact_WhenRetrieved_ShouldMatchByCity(){
+        AddressBookService addressBookService = new AddressBookService();
+        addressBookService.readAddressBookData(DB_IO);
+        String City = "Mysore";
+        List<AddressBookData> addressBookDataList = addressBookService.readAddressBookDataByCity(DB_IO, City);
+        Assert.assertEquals(1, addressBookDataList.size());
+    }
 }
